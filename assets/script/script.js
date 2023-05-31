@@ -62,14 +62,6 @@ var start3 = document.getElementsByClassName("center-wrapper")[0];
 /******************************************/
 /* Function and class declarations */
 /******************************************/
-// Timing function
-function timerFunc() {
-  var timerInterval = setInterval(function (Event) {
-    timerCount++;
-    timer.textContent = timerCount;
-  }, 1000);
-}
-
 // Question display function
 function displayQuestions() {
   start1.textContent = " ";
@@ -88,6 +80,18 @@ function displayQuestions() {
     choiceButton.value = i;
     choiceElement.appendChild(choiceButton);
   }
+
+  // Timing function
+  function timerFunc() {
+    var timerInterval = setInterval(function (Event) {
+      timerCount++;
+      timer.textContent = timerCount;
+    }, 1000);
+  }
+  timerFunc();
+
+  //   next Question function
+
 }
 
 /******************************************/
