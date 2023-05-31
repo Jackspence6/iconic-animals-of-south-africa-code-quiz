@@ -59,6 +59,7 @@ var currentTime = 0;
 var start1 = document.getElementsByClassName("startPage")[0];
 var start2 = document.getElementsByClassName("startPage")[1];
 var start3 = document.getElementsByClassName("center-wrapper")[0];
+var selectedChoice = "";
 /******************************************/
 /* Function and class declarations */
 /******************************************/
@@ -91,8 +92,23 @@ function displayQuestions() {
   timerFunc();
 
   //   next Question function
+choiceElement.addEventListener("click", function (Event) {
+    selectedChoice = Event.target.value;
+    console.log(selectedChoice);
+   
+   var correctAnswer = currentData.correctAnswer;
+   console.log(correctAnswer);
+
+    if (selectedChoice == correctAnswer) {
+        console.log("Correct!");
+    } else {
+        console.log("Wrong!");
+    }
+    
+})
 
 }
+
 
 /******************************************/
 /* Event listeners */
