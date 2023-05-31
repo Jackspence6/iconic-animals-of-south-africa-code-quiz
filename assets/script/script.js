@@ -60,6 +60,8 @@ var start1 = document.getElementsByClassName("startPage")[0];
 var start2 = document.getElementsByClassName("startPage")[1];
 var start3 = document.getElementsByClassName("center-wrapper")[0];
 var selectedChoice = "";
+var correctAnswer = "";
+var isCorrect = false;
 /******************************************/
 /* Function and class declarations */
 /******************************************/
@@ -92,23 +94,27 @@ function displayQuestions() {
   timerFunc();
 
   //   next Question function
-choiceElement.addEventListener("click", function (Event) {
+  choiceElement.addEventListener("click", function (Event) {
     selectedChoice = Event.target.value;
     console.log(selectedChoice);
-   
-   var correctAnswer = currentData.correctAnswer;
-   console.log(correctAnswer);
+
+    correctAnswer = currentData.correctAnswer;
+    console.log(correctAnswer);
 
     if (selectedChoice == correctAnswer) {
-        console.log("Correct!");
+      console.log("Correct!");
     } else {
-        console.log("Wrong!");
+      console.log("Wrong!");
     }
-    
-})
 
+    isCorrect = selectedChoice == correctAnswer;
+
+    if (isCorrect === true) {
+      console.log(isCorrect);
+      currentQuestion++;
+    }
+  });
 }
-
 
 /******************************************/
 /* Event listeners */
