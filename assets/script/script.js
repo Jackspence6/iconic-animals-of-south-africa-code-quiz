@@ -83,16 +83,6 @@ function displayQuestions() {
     choiceButton.value = i;
     choiceElement.appendChild(choiceButton);
   }
-
-  // Timing function
-  function timerFunc() {
-    var timerInterval = setInterval(function (Event) {
-      timerCount++;
-      timer.textContent = timerCount;
-    }, 1000);
-  }
-  timerFunc();
-
   //   Answer is correct or wrong
   choiceElement.addEventListener("click", function (Event) {
     selectedChoice = Event.target.value;
@@ -126,11 +116,19 @@ function nextQuestion() {
 }
 }
 
+
+  // Timing function
+  function timerFunc() {
+    var timerInterval = setInterval(function (Event) {
+      timerCount++;
+      timer.textContent = timerCount;
+    }, 1000);
+  }
 /******************************************/
 /* Event listeners */
 /******************************************/
 startBtn.addEventListener("click", displayQuestions);
-
+startBtn.addEventListener("click", timerFunc);
 /******************************************/
 /* Document manipulation */
 /******************************************/
