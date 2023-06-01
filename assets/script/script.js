@@ -112,6 +112,9 @@ function nextQuestion() {
   currentQuestion ++;
   if (currentQuestion < quizData.length) {
     displayQuestions();
+  } else {
+    console.log("Quiz Finished");
+    questionElement.textContent = "Quiz Completed";
   }
 }
 }
@@ -124,6 +127,8 @@ function nextQuestion() {
       timer.textContent = timerCount;
     }, 1000);
   }
+
+
 /******************************************/
 /* Event listeners */
 /******************************************/
