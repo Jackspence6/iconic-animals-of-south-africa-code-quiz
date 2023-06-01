@@ -16,7 +16,7 @@ var start3 = document.getElementsByClassName("center-wrapper")[0];
 /******************************************/
 /* Global variables and constants */
 /******************************************/
-var timerCount = 30;
+var timerCount = 60;
 var quizData = [
   {
     question:
@@ -62,7 +62,7 @@ var quizData = [
 ];
 
 var currentQuestion = 0;
-var currentTime = 30;
+var currentTime = 60;
 var selectedChoice = "";
 var correctAnswer = "";
 var isCorrect = false;
@@ -84,7 +84,7 @@ function nextQuestion() {
   if (currentQuestion < quizData.length) {
     displayQuestions();
   } else {
-    var timeDifference = 30 - timerCount;
+    var timeDifference = 60 - timerCount;
     console.log("Quiz Finished");
     choiceElement.textContent = "";
     questionElement.textContent = "Quiz Completed";
