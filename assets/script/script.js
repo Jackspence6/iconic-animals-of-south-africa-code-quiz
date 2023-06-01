@@ -6,6 +6,7 @@ var startBtn = document.querySelector(".center-button");
 var questionElement = document.querySelector("#question");
 var choiceElement = document.querySelector("#choices");
 var choiceStatus = document.querySelector("#choice-status");
+var scoreElement = document.querySelector("#score");
 
 /******************************************/
 /* Global variables and constants */
@@ -67,6 +68,7 @@ var score = 0;
 var currentData = "";
 var correct = "Correct. Good Choice!";
 var incorrect = "Wrong. Better Luck Next Time!";
+var timerInterval = "";
 /******************************************/
 /* Function and class declarations */
 /******************************************/
@@ -77,8 +79,16 @@ function nextQuestion() {
     displayQuestions();
   } else {
     console.log("Quiz Finished");
+    choiceElement.textContent = "";
     questionElement.textContent = "Quiz Completed";
-    clearInterval(timerCount);
+    scoreElement.innerHTML =
+      "Score: " +
+      score +
+      " out of 6." +
+      "<br>Time: " +
+      timerCount +
+      " seconds.";
+    clearInterval(timerInterval);
   }
 }
 
@@ -128,7 +138,7 @@ function displayQuestions() {
 
 // Timing function
 function timerFunc() {
-  var timerInterval = setInterval(function (Event) {
+  timerInterval = setInterval(function (Event) {
     timerCount--;
     timer.textContent = timerCount;
   }, 1000);
