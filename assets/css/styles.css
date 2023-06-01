@@ -37,6 +37,15 @@ nav {
   border-radius: 8px;
   padding: 10px;
 }
+
+footer {
+  position: fixed;
+  bottom: 1rem;
+  left: 46%;
+  font-size: 15px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 400;
+}
 /******************************************/
 /* Class Selectors */
 /******************************************/
