@@ -32,8 +32,8 @@ var quizData = [
   {
     question:
       "South Africa is home to two species of rhinoceros. Select one of them.",
-    choices: ["1. White", "2. Spotted", "3. Black", "4. Long-Horned"],
-    correctAnswer: [0, 2],
+    choices: ["1. White", "2. Spotted", "3. Horned", "4. Long-Horned"],
+    correctAnswer: [0],
   },
   {
     question:
@@ -93,7 +93,7 @@ function displayQuestions() {
   }
   timerFunc();
 
-  //   next Question function
+  //   Answer is correct or wrong
   choiceElement.addEventListener("click", function (Event) {
     selectedChoice = Event.target.value;
     console.log(selectedChoice);
@@ -109,11 +109,21 @@ function displayQuestions() {
 
     isCorrect = selectedChoice == correctAnswer;
 
-    if (isCorrect === true) {
+    if (isCorrect) {
       console.log(isCorrect);
-      currentQuestion++;
+      nextQuestion();
+    } else {
+      nextQuestion();
     }
   });
+
+  //   next Question function
+function nextQuestion() {
+  currentQuestion ++;
+  if (currentQuestion < quizData.length) {
+    displayQuestions();
+  }
+}
 }
 
 /******************************************/
