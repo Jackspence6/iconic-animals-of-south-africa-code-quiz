@@ -63,15 +63,50 @@ var selectedChoice = "";
 var correctAnswer = "";
 var isCorrect = false;
 var score = 0;
+var currentData = "";
 /******************************************/
 /* Function and class declarations */
 /******************************************/
+
+//   next Question function
+function nextQuestion() {
+  currentQuestion++;
+  if (currentQuestion < quizData.length) {
+    displayQuestions();
+  } else {
+    console.log("Quiz Finished");
+    questionElement.textContent = "Quiz Completed";
+  }
+}
+
+// Answer is correct or wrong
+choiceElement.addEventListener("click", function (event) {
+  // Convert selectedChoice to integer
+  selectedChoice = parseInt(event.target.value);
+  console.log(selectedChoice);
+
+  correctAnswer = currentData.correctAnswer;
+  console.log(correctAnswer);
+
+  if (selectedChoice === correctAnswer) {
+    // Use strict equality operator to compare
+    console.log("Correct!");
+    score++;
+    console.log(score);
+  } else {
+    console.log("Wrong!");
+    currentTime += 10;
+  }
+
+  nextQuestion();
+});
+
 // Question display function
 function displayQuestions() {
   start1.textContent = " ";
   start2.textContent = " ";
   start3.textContent = " ";
-  var currentData = quizData[currentQuestion];
+  currentData = quizData[currentQuestion];
   questionElement.textContent = currentData.question;
 
   //   Clear previous choice
@@ -83,43 +118,6 @@ function displayQuestions() {
     choiceButton.textContent = currentData.choices[i];
     choiceButton.value = i;
     choiceElement.appendChild(choiceButton);
-  }
-  //   Answer is correct or wrong
-  choiceElement.addEventListener("click", function (Event) {
-    selectedChoice = Event.target.value;
-    console.log(selectedChoice);
-
-    correctAnswer = currentData.correctAnswer;
-    console.log(correctAnswer);
-
-    if (selectedChoice == correctAnswer) {
-      console.log("Correct!");
-    } else {
-      console.log("Wrong!");
-    }
-
-    isCorrect = selectedChoice == correctAnswer;
-    // Score function
-    if (isCorrect) {
-      console.log(isCorrect);
-      score++;
-      console.log(score);
-      nextQuestion();
-    } else {
-      nextQuestion();
-      currentTime = currentTime + 10;
-    }
-  });
-
-  //   next Question function
-  function nextQuestion() {
-    currentQuestion++;
-    if (currentQuestion < quizData.length) {
-      displayQuestions();
-    } else {
-      console.log("Quiz Finished");
-      questionElement.textContent = "Quiz Completed";
-    }
   }
 }
 
@@ -134,8 +132,11 @@ function timerFunc() {
 /******************************************/
 /* Event listeners */
 /******************************************/
-startBtn.addEventListener("click", displayQuestions);
-startBtn.addEventListener("click", timerFunc);
+startBtn.addEventListener("click", function () {
+  displayQuestions();
+  timerFunc();
+});
+
 /******************************************/
 /* Document manipulation */
 /******************************************/
