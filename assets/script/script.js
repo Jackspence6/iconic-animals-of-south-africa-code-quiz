@@ -139,7 +139,7 @@ function displayTextForTimeCorrect(text, duration) {
   choiceStatus.textContent = correct;
   setTimeout(function () {
     choiceStatus.textContent = "";
-  }, 500);
+  }, 350);
 }
 
 // Time that text is displayed for if answer is incorrect
@@ -147,7 +147,7 @@ function displayTextForTimeIncorrect(text, duration) {
   choiceStatus.textContent = incorrect;
   setTimeout(function () {
     choiceStatus.textContent = "";
-  }, 500);
+  }, 350);
 }
 /******************************************/
 /* Event listeners */
