@@ -69,6 +69,7 @@ var currentData = "";
 var correct = "Correct. Good Choice!";
 var incorrect = "Wrong. Better Luck Next Time!";
 var timerInterval = "";
+
 /******************************************/
 /* Function and class declarations */
 /******************************************/
@@ -78,6 +79,7 @@ function nextQuestion() {
   if (currentQuestion < quizData.length) {
     displayQuestions();
   } else {
+    var timeDifference = 30 - timerCount;
     console.log("Quiz Finished");
     choiceElement.textContent = "";
     questionElement.textContent = "Quiz Completed";
@@ -86,7 +88,7 @@ function nextQuestion() {
       score +
       " out of 6." +
       "<br>Time: " +
-      timerCount +
+      timeDifference +
       " seconds.";
     clearInterval(timerInterval);
   }
