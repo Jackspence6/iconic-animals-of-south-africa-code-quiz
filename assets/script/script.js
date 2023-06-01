@@ -62,6 +62,7 @@ var start3 = document.getElementsByClassName("center-wrapper")[0];
 var selectedChoice = "";
 var correctAnswer = "";
 var isCorrect = false;
+var score = 0;
 /******************************************/
 /* Function and class declarations */
 /******************************************/
@@ -98,36 +99,37 @@ function displayQuestions() {
     }
 
     isCorrect = selectedChoice == correctAnswer;
-
+    // Score function
     if (isCorrect) {
       console.log(isCorrect);
+      score++;
+      console.log(score);
       nextQuestion();
     } else {
       nextQuestion();
+      currentTime = currentTime + 10;
     }
   });
 
   //   next Question function
-function nextQuestion() {
-  currentQuestion ++;
-  if (currentQuestion < quizData.length) {
-    displayQuestions();
-  } else {
-    console.log("Quiz Finished");
-    questionElement.textContent = "Quiz Completed";
+  function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+      displayQuestions();
+    } else {
+      console.log("Quiz Finished");
+      questionElement.textContent = "Quiz Completed";
+    }
   }
 }
+
+// Timing function
+function timerFunc() {
+  var timerInterval = setInterval(function (Event) {
+    timerCount++;
+    timer.textContent = timerCount;
+  }, 1000);
 }
-
-
-  // Timing function
-  function timerFunc() {
-    var timerInterval = setInterval(function (Event) {
-      timerCount++;
-      timer.textContent = timerCount;
-    }, 1000);
-  }
-
 
 /******************************************/
 /* Event listeners */
