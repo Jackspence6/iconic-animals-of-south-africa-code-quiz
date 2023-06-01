@@ -9,7 +9,7 @@ var choiceElement = document.querySelector("#choices");
 /******************************************/
 /* Global variables and constants */
 /******************************************/
-var timerCount = 0;
+var timerCount = 30;
 var quizData = [
   {
     question:
@@ -33,7 +33,7 @@ var quizData = [
     question:
       "South Africa is home to two species of rhinoceros. Select one of them.",
     choices: ["1. White", "2. Spotted", "3. Horned", "4. Long-Horned"],
-    correctAnswer: [0],
+    correctAnswer: 0,
   },
   {
     question:
@@ -55,7 +55,7 @@ var quizData = [
 ];
 
 var currentQuestion = 0;
-var currentTime = 0;
+var currentTime = 30;
 var start1 = document.getElementsByClassName("startPage")[0];
 var start2 = document.getElementsByClassName("startPage")[1];
 var start3 = document.getElementsByClassName("center-wrapper")[0];
@@ -76,6 +76,7 @@ function nextQuestion() {
   } else {
     console.log("Quiz Finished");
     questionElement.textContent = "Quiz Completed";
+    clearInterval(timerCount);
   }
 }
 
@@ -95,7 +96,7 @@ choiceElement.addEventListener("click", function (event) {
     console.log(score);
   } else {
     console.log("Wrong!");
-    currentTime += 10;
+    timerCount -= 5;
   }
 
   nextQuestion();
@@ -124,7 +125,7 @@ function displayQuestions() {
 // Timing function
 function timerFunc() {
   var timerInterval = setInterval(function (Event) {
-    timerCount++;
+    timerCount --;
     timer.textContent = timerCount;
   }, 1000);
 }
