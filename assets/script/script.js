@@ -151,6 +151,19 @@ function timerFunc() {
   timerInterval = setInterval(function (Event) {
     timerCount--;
     timer.textContent = timerCount;
+
+    if (timerCount <= 0) {
+      var timeDifference = 60 - timerCount;
+      console.log("Out of time!");
+      choiceElement.textContent = "";
+      questionElement.textContent = "You're out of time!";
+      scoreElement.innerHTML =
+        "Score: " + score + " out of 6." + "<br>Time: " + " Too much!";
+      userDetailsElement.style.display = "block";
+      submitButton.style.display = "block";
+      userName = userDetailsElement.value;
+      clearInterval(timerInterval);
+    }
   }, 1000);
 }
 
