@@ -94,6 +94,22 @@ nav {
   font-weight: bold;
   text-align: center;
 }
+
+#user-details {
+  display: block;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f1f1f1;
+}
+
+#submit-button {
+  position: fixed;
+  top: 15%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
 /******************************************/
 /* Media queries */
 /******************************************/

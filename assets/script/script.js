@@ -7,6 +7,11 @@ var questionElement = document.querySelector("#question");
 var choiceElement = document.querySelector("#choices");
 var choiceStatus = document.querySelector("#choice-status");
 var scoreElement = document.querySelector("#score");
+var userDetailsElement = document.querySelector("#user-details");
+var submitButton = document.querySelector("#submit-button");
+var start1 = document.getElementsByClassName("startPage")[0];
+var start2 = document.getElementsByClassName("startPage")[1];
+var start3 = document.getElementsByClassName("center-wrapper")[0];
 
 /******************************************/
 /* Global variables and constants */
@@ -58,9 +63,6 @@ var quizData = [
 
 var currentQuestion = 0;
 var currentTime = 30;
-var start1 = document.getElementsByClassName("startPage")[0];
-var start2 = document.getElementsByClassName("startPage")[1];
-var start3 = document.getElementsByClassName("center-wrapper")[0];
 var selectedChoice = "";
 var correctAnswer = "";
 var isCorrect = false;
@@ -69,6 +71,9 @@ var currentData = "";
 var correct = "Correct. Good Choice!";
 var incorrect = "Wrong. Better Luck Next Time!";
 var timerInterval = "";
+var userName = "";
+userDetailsElement.style.display = "none";
+submitButton.style.display = "none";
 
 /******************************************/
 /* Function and class declarations */
@@ -90,6 +95,9 @@ function nextQuestion() {
       "<br>Time: " +
       timeDifference +
       " seconds.";
+    userDetailsElement.style.display = "block";
+    submitButton.style.display = "block";
+    userName = userDetailsElement.value;
     clearInterval(timerInterval);
   }
 }
