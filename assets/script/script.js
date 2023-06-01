@@ -95,12 +95,12 @@ choiceElement.addEventListener("click", function (event) {
     // Use strict equality operator to compare
     console.log("Correct!");
     score++;
-    choiceStatus.textContent = correct;
+    displayTextForTimeCorrect();
     console.log(score);
   } else {
     console.log("Wrong!");
     timerCount -= 5;
-    choiceStatus.textContent = incorrect;
+    displayTextForTimeIncorrect();
   }
 
   nextQuestion();
@@ -129,11 +129,26 @@ function displayQuestions() {
 // Timing function
 function timerFunc() {
   var timerInterval = setInterval(function (Event) {
-    timerCount --;
+    timerCount--;
     timer.textContent = timerCount;
   }, 1000);
 }
 
+// Time that text is displayed for if answer is correct
+function displayTextForTimeCorrect(text, duration) {
+  choiceStatus.textContent = correct;
+  setTimeout(function () {
+    choiceStatus.textContent = "";
+  }, 500);
+}
+
+// Time that text is displayed for if answer is incorrect
+function displayTextForTimeIncorrect(text, duration) {
+  choiceStatus.textContent = incorrect;
+  setTimeout(function () {
+    choiceStatus.textContent = "";
+  }, 500);
+}
 /******************************************/
 /* Event listeners */
 /******************************************/
