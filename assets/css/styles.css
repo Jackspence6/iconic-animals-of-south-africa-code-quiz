@@ -76,6 +76,14 @@ nav {
   padding: 0.2rem;
   margin: 0.1rem;
 }
+
+#choice-status {
+  font-size: 15px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: lighter;
+  margin-top: 1rem;
+  text-align: center;
+}
 /******************************************/
 /* Media queries */
 /******************************************/

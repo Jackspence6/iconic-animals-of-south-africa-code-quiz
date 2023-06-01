@@ -5,6 +5,7 @@ var timer = document.querySelector("#timer");
 var startBtn = document.querySelector(".center-button");
 var questionElement = document.querySelector("#question");
 var choiceElement = document.querySelector("#choices");
+var choiceStatus = document.querySelector("#choice-status");
 
 /******************************************/
 /* Global variables and constants */
@@ -64,10 +65,11 @@ var correctAnswer = "";
 var isCorrect = false;
 var score = 0;
 var currentData = "";
+var correct = "Correct. Good Choice!";
+var incorrect = "Wrong. Better Luck Next Time!";
 /******************************************/
 /* Function and class declarations */
 /******************************************/
-
 //   next Question function
 function nextQuestion() {
   currentQuestion++;
@@ -93,10 +95,12 @@ choiceElement.addEventListener("click", function (event) {
     // Use strict equality operator to compare
     console.log("Correct!");
     score++;
+    choiceStatus.textContent = correct;
     console.log(score);
   } else {
     console.log("Wrong!");
     timerCount -= 5;
+    choiceStatus.textContent = incorrect;
   }
 
   nextQuestion();
