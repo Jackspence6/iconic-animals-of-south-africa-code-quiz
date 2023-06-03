@@ -38,6 +38,20 @@ nav {
   padding: 10px;
 }
 
+ul {
+  background: #919599;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+ul li {
+  background: #e2e4e6;
+  margin: 5px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 footer {
   position: fixed;
   bottom: 1rem;
@@ -118,6 +132,12 @@ footer {
   top: 15%;
   left: 56%;
   transform: translate(-50%, -50%);
+}
+
+#scores {
+  font-size: 15px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  list-style: none;
 }
 /******************************************/
 /* Media queries */
