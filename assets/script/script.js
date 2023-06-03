@@ -190,6 +190,19 @@ startBtn.addEventListener("click", function () {
   timerFunc();
 });
 
+submitButton.addEventListener("click", function () {
+  questionElement.textContent = "Highscores:";
+  userDetailsElement.style.display = "none";
+  scoreElement.textContent = "";
+  submitButton.style.display = "none";
+  var highScores = {
+    Name: userDetailsElement.value,
+    Score: score,
+  };
+  localStorage.setItem("HighScores", JSON.stringify(highScores));
+});
+
+var storedScores = JSON.parse(localStorage.getItem("HighScores"));
 /******************************************/
 /* Document manipulation */
 /******************************************/
