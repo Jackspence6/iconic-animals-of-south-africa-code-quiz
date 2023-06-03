@@ -12,6 +12,7 @@ var submitButton = document.querySelector("#submit-button");
 var start1 = document.getElementsByClassName("startPage")[0];
 var start2 = document.getElementsByClassName("startPage")[1];
 var start3 = document.getElementsByClassName("center-wrapper")[0];
+var scoresList = document.querySelector("#scores");
 
 /******************************************/
 /* Global variables and constants */
@@ -74,6 +75,8 @@ var timerInterval = "";
 var userName = "";
 userDetailsElement.style.display = "none";
 submitButton.style.display = "none";
+var highScores = [];
+var timeDifference = "";
 
 /******************************************/
 /* Function and class declarations */
@@ -84,7 +87,7 @@ function nextQuestion() {
   if (currentQuestion < quizData.length) {
     displayQuestions();
   } else {
-    var timeDifference = 60 - timerCount;
+    timeDifference = 60 - timerCount;
     console.log("Quiz Finished");
     choiceElement.textContent = "";
     questionElement.textContent = "Quiz Completed";
@@ -122,7 +125,6 @@ choiceElement.addEventListener("click", function (event) {
     timerCount -= 5;
     displayTextForTimeIncorrect();
   }
-
   nextQuestion();
 });
 
@@ -182,6 +184,41 @@ function displayTextForTimeIncorrect(text, duration) {
     choiceStatus.textContent = "";
   }, 350);
 }
+
+// Function to render the scores list
+function renderScores() {
+  if (!Array.isArray(highScores)) {
+    highScores = [];
+  }
+  scoresList.innerHTML = "";
+
+  for (let i = 0; i < highScores.length; i++) {
+    var scoreEntry = highScores[i];
+
+    var li = document.createElement("li");
+    li.innerHTML =
+      "<b>Name:</b> " +
+      scoreEntry.Name +
+      "<br><b>Score:</b> " +
+      scoreEntry.Score +
+      " out of 6" +
+      "<br><b>Time:</b> " +
+      timeDifference +
+      " seconds";
+    li.setAttribute("data-index", i);
+    scoresList.appendChild(li);
+  }
+}
+
+// Function to retrieve scores from local storage
+function getStoredScores() {
+  var storedScores = localStorage.getItem("HighScores");
+  if (storedScores) {
+    highScores = JSON.parse(storedScores);
+  }
+  renderScores();
+}
+
 /******************************************/
 /* Event listeners */
 /******************************************/
@@ -195,14 +232,16 @@ submitButton.addEventListener("click", function () {
   userDetailsElement.style.display = "none";
   scoreElement.textContent = "";
   submitButton.style.display = "none";
-  var highScores = {
+  var newScoreEntry = {
     Name: userDetailsElement.value,
     Score: score,
+    Time: timeDifference,
   };
+  highScores.push(newScoreEntry);
   localStorage.setItem("HighScores", JSON.stringify(highScores));
+  renderScores();
 });
 
-var storedScores = JSON.parse(localStorage.getItem("HighScores"));
 /******************************************/
 /* Document manipulation */
 /******************************************/
@@ -210,6 +249,7 @@ var storedScores = JSON.parse(localStorage.getItem("HighScores"));
 /******************************************/
 /* Initialization code */
 /******************************************/
+getStoredScores();
 
 /******************************************/
 /* Main logic */
