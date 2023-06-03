@@ -240,6 +240,7 @@ submitButton.addEventListener("click", function () {
   highScores.push(newScoreEntry);
   localStorage.setItem("HighScores", JSON.stringify(highScores));
   renderScores();
+  getStoredScores();
 });
 
 /******************************************/
@@ -249,7 +250,6 @@ submitButton.addEventListener("click", function () {
 /******************************************/
 /* Initialization code */
 /******************************************/
-getStoredScores();
 
 /******************************************/
 /* Main logic */
