@@ -14,6 +14,8 @@ var start2 = document.getElementsByClassName("startPage")[1];
 var start3 = document.getElementsByClassName("center-wrapper")[0];
 var scoresList = document.querySelector("#scores");
 var clearScoresBtn = document.querySelector("#clear-scores");
+var viewScoresBtn = document.querySelector("#view-scores-btn");
+var playAgainBtn = document.querySelector("#play-again-btn");
 
 /******************************************/
 /* Global variables and constants */
@@ -103,6 +105,7 @@ function nextQuestion() {
     submitButton.style.display = "block";
     userName = userDetailsElement.value;
     clearInterval(timerInterval);
+    playAgainBtn.style.display = "block";
   }
 }
 
@@ -227,6 +230,40 @@ function clearScores() {
   renderScores();
 }
 
+function resetQuiz() {
+  currentQuestion = 0;
+  timerCount = 60;
+  score = 0;
+  selectedChoice = "";
+  correctAnswer = "";
+  isCorrect = false;
+  userDetailsElement.value = "";
+  choiceStatus.textContent = "";
+  scoresList.innerHTML = "";
+  clearInterval(timerInterval);
+  timer.textContent = timerCount;
+}
+
+function startQuiz() {
+  displayQuestions();
+  timerFunc();
+}
+
+// Function to display high scores
+function displayHighScores() {
+  start1.textContent = "";
+  start2.textContent = "";
+  start3.textContent = "";
+  questionElement.textContent = "Highscores:";
+  choiceElement.textContent = "";
+  choiceStatus.textContent = "";
+  scoreElement.textContent = "";
+  userDetailsElement.style.display = "none";
+  submitButton.style.display = "none";
+  playAgainBtn.style.display = "none";
+  renderScores();
+}
+
 /******************************************/
 /* Event listeners */
 /******************************************/
@@ -254,6 +291,15 @@ clearScoresBtn.addEventListener("click", function () {
   clearScores();
 });
 
+viewScoresBtn.addEventListener("click", function () {
+  displayHighScores();
+});
+
+playAgainBtn.addEventListener("click", function () {
+  resetQuiz();
+  startQuiz();
+});
+
 /******************************************/
 /* Document manipulation */
 /******************************************/
@@ -262,7 +308,3 @@ clearScoresBtn.addEventListener("click", function () {
 /* Initialization code */
 /******************************************/
 getStoredScores();
-
-/******************************************/
-/* Main logic */
-/******************************************/
