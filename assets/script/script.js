@@ -13,6 +13,7 @@ var start1 = document.getElementsByClassName("startPage")[0];
 var start2 = document.getElementsByClassName("startPage")[1];
 var start3 = document.getElementsByClassName("center-wrapper")[0];
 var scoresList = document.querySelector("#scores");
+var clearScoresBtn = document.querySelector("#clear-scores");
 
 /******************************************/
 /* Global variables and constants */
@@ -203,7 +204,7 @@ function renderScores() {
       scoreEntry.Score +
       " out of 6" +
       "<br><b>Time:</b> " +
-      timeDifference +
+      scoreEntry.Time +
       " seconds";
     li.setAttribute("data-index", i);
     scoresList.appendChild(li);
@@ -216,6 +217,13 @@ function getStoredScores() {
   if (storedScores) {
     highScores = JSON.parse(storedScores);
   }
+  renderScores();
+}
+
+// Function to clear all scores from local storage
+function clearScores() {
+  highScores = [];
+  localStorage.removeItem("HighScores");
   renderScores();
 }
 
@@ -240,7 +248,10 @@ submitButton.addEventListener("click", function () {
   highScores.push(newScoreEntry);
   localStorage.setItem("HighScores", JSON.stringify(highScores));
   renderScores();
-  getStoredScores();
+});
+
+clearScoresBtn.addEventListener("click", function () {
+  clearScores();
 });
 
 /******************************************/
@@ -250,6 +261,7 @@ submitButton.addEventListener("click", function () {
 /******************************************/
 /* Initialization code */
 /******************************************/
+getStoredScores();
 
 /******************************************/
 /* Main logic */
