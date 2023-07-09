@@ -291,9 +291,8 @@ clearScoresBtn.addEventListener("click", function () {
   clearScores();
 });
 
-viewScoresBtn.addEventListener("click", function () {
-  displayHighScores();
-});
+// Event listener for "View Highscores" button
+viewScoresBtn.addEventListener("click", displayHighScores);
 
 playAgainBtn.addEventListener("click", function () {
   resetQuiz();
